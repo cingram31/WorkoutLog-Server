@@ -1,6 +1,7 @@
 require('dotenv').config();
 var express = require('express');
 var app = express();
+var http = require('http').Server(app);
 var bodyParser = require('body-parser');
 var sequelize = require('./db.js');
 
@@ -13,7 +14,7 @@ app.use(bodyParser.json());
 app.use(require('./middleware/headers'));
 app.use(require('./middleware/validate-session'));
 
-app.listen(3000, function(){
+http.listen(process.env.PORT || 3000, function() {
 	console.log("app is listening on 3000.");
 });
 
